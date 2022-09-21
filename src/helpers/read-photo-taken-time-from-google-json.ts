@@ -12,9 +12,8 @@ export async function readPhotoTakenTimeFromGoogleJson(mediaFile: MediaFileInfo)
   const jsonContents = await readFile(mediaFile.jsonFilePath, 'utf8');
   const googleJsonMetadata = JSON.parse(jsonContents) as GoogleMetadata;
 
-  if (googleJsonMetadata?.photoTakenTime?.timestamp) {
-    const photoTakenTimestamp = parseInt(googleJsonMetadata.photoTakenTime.timestamp, 10);
-    const photoTakenDate = new Date(photoTakenTimestamp * 1000);
+  if (googleJsonMetadata?.photoTakenTime?.formatted) {
+    const photoTakenDate = new Date(googleJsonMetadata.photoTakenTime.formatted);
     return photoTakenDate.toISOString();
   } else {
     return null;

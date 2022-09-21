@@ -17,6 +17,8 @@ export function getCompanionJsonPathForMediaFile(mediaFilePath: string): string|
   const potentialJsonFileNames: string[] = [
     `${mediaFileNameWithoutExtension}.json`,
     `${mediaFileNameWithoutExtension}${mediaFileExtension}.json`,
+    `${mediaFileNameWithoutExtension.substr(0, mediaFileNameWithoutExtension.length - 1)}.json`,
+    `${mediaFileNameWithoutExtension.substr(0, mediaFileNameWithoutExtension.length - 1)}${mediaFileExtension}.json`,
   ];
 
   // Another edge case which seems to be quite inconsistent occurs when we have media files containing a number suffix for example "foo(1).jpg"
